@@ -1,10 +1,17 @@
 class Order
 
-  def initilize
+  attr_reader :userID_shop, :userID_customer
+
+  def initialize(userID_customer, userID_shop)
+    @userID_customer = userID_customer
+    @userID_shop = userID_shop
+  end
+
+  def save
 
   end
 
-  def method_name
+  def find
 
   end
 
