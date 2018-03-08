@@ -4,8 +4,8 @@ require 'active_support/inflector'
 PRINT_QUERIES = ENV['PRINT_QUERIES'] == 'true'
 # https://tomafro.net/2010/01/tip-relative-paths-with-file-expand-path
 ROOT_FOLDER = File.join(File.dirname(__FILE__), '..')
-CATS_SQL_FILE = File.join(ROOT_FOLDER, 'shop_support_api.sql')
-CATS_DB_FILE = File.join(ROOT_FOLDER, 'shop_support_api.db')
+SHOP_SQL_FILE = File.join(ROOT_FOLDER, 'shop_support_api.sql')
+SHOP_DB_FILE = File.join(ROOT_FOLDER, 'shop_support_api.db')
 
 class DBConnection
   def self.open(db_file_name)
@@ -17,12 +17,12 @@ class DBConnection
 
   def self.reset
     commands = [
-      "rm '#{CATS_DB_FILE}'",
-      "cat '#{CATS_SQL_FILE}' | sqlite3 '#{CATS_DB_FILE}'"
+      "rm '#{SHOP_DB_FILE}'",
+      "cat '#{SHOP_SQL_FILE}' | sqlite3 '#{SHOP_DB_FILE}'"
     ]
 
     commands.each { |command| `#{command}` }
-    DBConnection.open(CATS_DB_FILE)
+    DBConnection.open(SHOP_DB_FILE)
   end
 
   def self.instance

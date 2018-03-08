@@ -1,24 +1,24 @@
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
-  emailAddress VARCHAR(255) NOT NULL,
-);
+-- CREATE TABLE users (
+--   id INTEGER PRIMARY KEY,
+--   emailAddress VARCHAR(255) NOT NULL
+-- );
 
-CREATE TABLE license_keys (
-  id INTEGER PRIMARY KEY,
-  license_key VARCHAR(255) NOT NULL,
-  userId INTEGER,
-
-  FOREIGN KEY(userId) REFERENCES users(id)
-);
-
-CREATE TABLE orders (
-  id INTEGER PRIMARY KEY,
-  userID_customer INTEGER,
-  userID_shop INTEGER,
-
-  FOREIGN KEY(userID_customer) REFERENCES users(id)
-  FOREIGN KEY(userID_shop) REFERENCES users(id)
-);
+-- CREATE TABLE license_keys (
+--   id INTEGER PRIMARY KEY,
+--   license_key VARCHAR(255) NOT NULL,
+--   user_id INTEGER NOT NULL,
+--
+--   FOREIGN KEY(user_id) REFERENCES users(id)
+-- );
+--
+-- CREATE TABLE orders (
+--   id INTEGER PRIMARY KEY,
+--   user_id_customer INTEGER NOT NULL,
+--   user_id_shop INTEGER NOT NULL,
+--
+--   FOREIGN KEY(user_id_customer) REFERENCES users(id),
+--   FOREIGN KEY(user_id_shop) REFERENCES users(id)
+-- );
 
 --
 -- INSERT INTO

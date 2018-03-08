@@ -7,7 +7,7 @@ class License_Key
   end
 
   def self.find_by_userId(userId)
-
+    
   end
 
 end
