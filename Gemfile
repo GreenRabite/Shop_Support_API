@@ -3,6 +3,7 @@ source 'https://rubygems.org' do
   gem 'http'
   gem 'pq'
   gem 'routes'
-
-  
-end
+  gem 'rack'
+  gem 'puma'
+  gem 'rspec', "~> 3.4.0"
+  gem 'byebug'
