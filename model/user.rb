@@ -12,8 +12,22 @@ class User
 
   def save
     conn = PG::Connection.open(:dbname=>'shop_support_api')
+    res = conn.exec_params('SELECT max(id) from users')
+    id = res.max['max'].to_i + 1
     conn.prepare('saveUser', 'INSERT INTO users (id, emailAddress) VALUES ($1, $2)')
-    conn.exec_prepared('saveUser', [3, self.emailAddress])
+    conn.exec_prepared('saveUser', [id, self.emailAddress])
+  end
+
+  def self.all
+    conn = PG::Connection.open(:dbname=>'shop_support_api')
+    res = conn.exec_params('SELECT * FROM users')
+    result = []
+    res.each do |row|
+      user = User.new(row['emailaddress'])
+      user.id = row['id']
+      result << user
+    end
+    result
   end
 
   def self.find_by_email(emailAddress)
