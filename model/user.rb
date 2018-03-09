@@ -2,9 +2,11 @@ require 'pg'
 require 'byebug'
 
 class User
-  attr_reader :id, :emailAddress
+  attr_accessor :id
+  attr_reader :emailAddress
 
   def initialize(emailAddress)
+    @id
     @emailAddress = emailAddress
   end
 
@@ -17,11 +19,12 @@ class User
   def self.find_by_email(emailAddress)
     conn = PG::Connection.open(:dbname=>'shop_support_api')
     res = conn.exec_params('SELECT * FROM users WHERE emailAddress=$1', [emailAddress])
-    debugger
-    res.empty? ? nil : self.new(res[0])
+    user = self.new(res.getvalue(0,1))
+    user.id = res.getvalue(0,0)
+    user
   end
 
-  def numLicenseKeysSent
+  def numLicenseKeysSenta
 
   end
 
